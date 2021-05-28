@@ -1,0 +1,55 @@
+1º Cobrança Ticket: 92700 Data Ultima Interação 03/03/2021 08:51 Analista: Valdeir Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 92874 Data Ultima Interação 03/03/2021 08:51 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 96617 Data Ultima Interação 03/03/2021 08:57 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 96942 Data Ultima Interação 03/03/2021 14:45 Analista: Valdeir Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 97928 Data Ultima Interação 03/03/2021 08:51 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98166 Data Ultima Interação 03/03/2021 08:56 Analista: Bruno Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98250 Data Ultima Interação 04/03/2021 19:23 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98282 Data Ultima Interação 04/03/2021 19:23 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98296 Data Ultima Interação 03/03/2021 10:07 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98342 Data Ultima Interação 03/03/2021 08:50 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98355 Data Ultima Interação 04/03/2021 19:23 Analista: Matheus Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98535 Data Ultima Interação 04/03/2021 19:23 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98579 Data Ultima Interação 04/03/2021 19:23 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98587 Data Ultima Interação 04/03/2021 19:23 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98599 Data Ultima Interação 04/03/2021 19:23 Analista: Matheus Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98604 Data Ultima Interação 04/03/2021 19:24 Analista: Matheus Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98608 Data Ultima Interação 04/03/2021 19:24 Analista: Matheus Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98616 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98621 Data Ultima Interação 04/03/2021 19:24 Analista: Matheus Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98628 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98629 Data Ultima Interação 04/03/2021 19:24 Analista: Bruno Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98630 Data Ultima Interação 03/03/2021 15:02 Analista: Valdeir Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98634 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98641 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98652 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98657 Data Ultima Interação 04/03/2021 19:24 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98659 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98677 Data Ultima Interação 04/03/2021 19:24 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98679 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98687 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98691 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+Concluido Ticket: 98692 Data Ultima Interação 04/03/2021 19:24 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98714 Data Ultima Interação 03/03/2021 15:59 Analista: Valdeir Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98717 Data Ultima Interação 03/03/2021 13:28 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98768 Data Ultima Interação 03/03/2021 11:27 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98776 Data Ultima Interação 03/03/2021 17:59 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98800 Data Ultima Interação 03/03/2021 17:57 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98816 Data Ultima Interação 03/03/2021 16:12 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98821 Data Ultima Interação 03/03/2021 16:41 Analista: Bruno Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98824 Data Ultima Interação 03/03/2021 15:41 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98830 Data Ultima Interação 03/03/2021 08:32 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98837 Data Ultima Interação 03/03/2021 11:49 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98839 Data Ultima Interação 03/03/2021 09:45 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98841 Data Ultima Interação 03/03/2021 09:58 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98845 Data Ultima Interação 03/03/2021 19:54 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98848 Data Ultima Interação 03/03/2021 14:12 Analista: Petrick Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98851 Data Ultima Interação 03/03/2021 14:15 Analista: Paulo Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98862 Data Ultima Interação 03/03/2021 17:07 Analista: Bruno Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98878 Data Ultima Interação 03/03/2021 17:36 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98880 Data Ultima Interação 03/03/2021 17:35 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98881 Data Ultima Interação 03/03/2021 17:57 Analista: Bruno Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98883 Data Ultima Interação 04/03/2021 08:31 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98885 Data Ultima Interação 03/03/2021 17:47 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98895 Data Ultima Interação 04/03/2021 08:27 Analista: Alex Processado em: 06/03/2021 08:33:54 
+1º Cobrança Ticket: 98674 Data Ultima Interação 03/03/2021 08:42 Analista: Alex Processado em: 06/03/2021 08:36:15 
