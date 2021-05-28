@@ -9,7 +9,7 @@
     <div class="content">
         <div class="dropdown show">
             <a class="btn btn-secondary dropdown-toggle" href="{{$_SERVER['REQUEST_URI']}}" role="button" id="depPrincDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$departamento}}</a>
-
+<h class="class">teste</h>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="#" id="depSecDrop" onclick="redirecionaPaginaDep()"></a>
             </div>
