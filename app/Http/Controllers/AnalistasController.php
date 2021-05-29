@@ -68,10 +68,6 @@ public function editarAnalista(Request $request){
         ]);
 }
 
-    public function incluir()
-    {
-        return view('PainelAdministrativo.incluiranalistas');
-    }
 
     public function store(Request $request)
     {

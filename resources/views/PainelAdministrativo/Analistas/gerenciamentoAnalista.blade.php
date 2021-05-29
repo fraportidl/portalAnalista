@@ -1,55 +1,11 @@
-<!doctype html>
-<html lang="pt-br">
+@extends('PainelAdministrativo\layout')
 
-<head>
-    <meta charset="utf-8">
-    <title>Portal BlueTI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
-    <link href="/storage/assets/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/storage/assets/css/entypo.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/storage/assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
-</head>
-<body>
-@php
-$home = '/paineladm';
-@endphp
-<div class="navbar-container">
-    <div class="bg-dark navbar-dark" data-sticky="top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="#">
-                    <img alt="Logo" src="/storage/assets/img/Logaso.svg" />
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="icon-menu h4"></i>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{$home}}" class="nav-link">Home</a>
-                        </li>
-                        < !-- ISSO É UM COMENTARIO -- >
-                        <li class="nav-item">
-                            <a href="/paineladm/analistas?departamento=Suporte&ativo=1" class="nav-link">Analistas</a>
-                        </li>
+@section('TituloPagina') Analistas @endsection
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Processamento Ticket</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Tester</a>
-                        </li>
-                    </ul>
+@section('conteudo')
 
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
-
+{{--------------Menu navegação -----------------------}}
 <div class="main-container">
     <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
         <div class="container">
@@ -57,7 +13,7 @@ $home = '/paineladm';
                 <div class="col">
                     <ol class="breadcrumb">
                         </li>
-                        <li class="breadcrumb-item"><a href="{{$home}}">Home</a>
+                        <li class="breadcrumb-item"><a href="/paineladm">Home</a>
                         <li class="breadcrumb-item Ativo"><a href="{{$_SERVER['REQUEST_URI']}}">Gerenciamento de analistas</a>
                         </li>
                     </ol>
@@ -93,40 +49,23 @@ $home = '/paineladm';
         </div>
     </section>
 
+    {{-------------FILTRO DEPARTAMENTO------------}}
     <section class="flush-with-above">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-12 col-md-auto mb-5">
 
-
                     <nav class="nav flex-md-column">
                         <div class="dropdown flex-md-column" >
                             <label for="filtro-departamento" class="col-form-label">Filtros:</label>
                             </br>
-                            <select class="form-select" id="selectDepartamento">
+                            <select class="form-select btn" id="selectDepartamento">
                                 <option selected>{{$nomeDepartamentoPesquisado}}</option>
                                 @foreach($departamentos as $departamento)
                                 <option value="{{$departamento->getId()}}">{{$departamento->getNomedep()}}</option>
                                 @endforeach
                             </select>
 
-
-{{--                            <button class="btn btn-outline-info dropdown-toggle" type="button" id="filtro-departamento" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Suporte
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="h6 mb-0">Suporte</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <span class="h6 mb-0">Implantação</span>
-                                    </a>
-                                </li>
-                            </ul>--}}
                     </nav>
                     <hr class="short">
                     {{------------CHECK BOX ATIVO/INATIVO-------------------}}
@@ -145,17 +84,6 @@ $home = '/paineladm';
 
                 <div class="col-12 col-md-10 col-lg-9">
                     <div class="col-12 col-md-10 col-lg-9">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <form class="d-flex align-items-center">
-                                <span class="mr-2 text-muted text-small text-nowrap">Ordenar por:</span>
-                                <select class="custom-select">
-                                    <option value="nome">Alfabetica</option>
-                                    <option value="novo" selected>Recentes</option>
-
-                                    <option value="recente-modificado">Modificado recente</option>
-                                </select>
-                            </form>
-                        </div>
 
                         <div class="row">
                             <div class="col">
@@ -203,9 +131,8 @@ $home = '/paineladm';
                                                     <i class="icon-dots-three-horizontal"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm">
-                                                    <a class="dropdown-item" href="#">Alterar</a>
-{{--                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Desativar</a>--}}
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo">Alterar</a>
+
                                                 </div>
                                             </div>
                                         </td>
@@ -226,7 +153,7 @@ $home = '/paineladm';
             </div>
     </section>
 </div>
-
+{{-----------MODAL CADASTRO ANALISTA---------------}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -250,7 +177,7 @@ $home = '/paineladm';
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class=" col-sm-6">
+                        <div class=" col-sm-4">
                             <label for="modal-numeroTicket" class="col-form-label">Numero Ticket:</label>
                             <input type="text" class="form-control" id="modal-numeroTicket" name="codTicket">
                         </div>
@@ -265,7 +192,7 @@ $home = '/paineladm';
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+
                 <div class="form-group row">
                 <div class="col-sm-auto">
                     <label for="gerente" class="col-form-label">Cargo:</label>
@@ -275,7 +202,8 @@ $home = '/paineladm';
                             <option value="1">Gerente</option>
                     </select>
                 </div>
-
+                </div>
+                    </div>
                 <div class="col-sm-auto">
                     <div class="form-group">
                         <label for="imagemAnalista">Imagem Analista</label>
@@ -284,7 +212,6 @@ $home = '/paineladm';
                 </div>
                 </div>
 
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -294,24 +221,76 @@ $home = '/paineladm';
     </div>
 </div>
 
-<script type="text/javascript" src="/storage/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/popper.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/bootstrap.js"></script>
+{{-------------------MODAL  ALTERAÇÃO DE ANALISTA----------------}}
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Alterar Analista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" method="post">
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <div class=" col-sm">
+                            <label for="modal-nome" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="modal-nome" name="nome">
+                        </div>
+                        <div class="col-sm">
+                            <label for="modal-sobrenome" class="col-form-label">Sobrenome:</label>
+                            <input type="text" class="form-control" id="modal-sobrenome" name="sobrenome">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class=" col-sm-4">
+                            <label for="modal-numeroTicket" class="col-form-label">Numero Ticket:</label>
+                            <input type="text" class="form-control" id="modal-numeroTicket" name="codTicket">
+                        </div>
+                        <div class="col-sm-auto">
+
+                            <label for="departamento" class="col-form-label">Setor:</label>
+                            </br>
+                            <select class="form-select" name="departamento">
+                                <option value="{{$nomeDepartamentoPesquisado}}" selected>{{$nomeDepartamentoPesquisado}}</option>
+                                @foreach($departamentos as $departamento)
+                                    <option value="{{$departamento->getNomedep()}}">{{$departamento->getNomedep()}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-auto">
+                            <label for="gerente" class="col-form-label">Cargo:</label>
+                            </br>
+                            <select class="form-select" name="gerente">
+                                <option value="0" selected>Analista</option>
+                                <option value="1">Gerente</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                        <div class="col-sm-auto">
+                            <div class="form-group">
+                                <label for="imagemAnalista">Imagem Analista</label>
+                                <input type="file" class="form-control-file" id="Imagem-Analista" name="imagemAnalista">
+                            </div>
+                        </div>
+                    </div>
 
 
-<script type="text/javascript" src="/storage/assets/js/aos.js"></script>
-<script type="text/javascript" src="/storage/assets/js/flatpickr.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/flickity.pkgd.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/jarallax.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/jarallax-video.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/jarallax-element.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/scrollMonitor.js"></script>
-<script type="text/javascript" src="/storage/assets/js/jquery.smartWizard.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/smooth-scroll.polyfills.min.js"></script>
-<script type="text/javascript" src="/storage/assets/js/prism.js"></script>
-<script type="text/javascript" src="/storage/assets/js/zoom.min.js"></script>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<script type="text/javascript" src="/storage/assets/js/theme.js"></script>
     <script>
 
       function  redirecionaPaginaDep(){
@@ -327,6 +306,4 @@ $home = '/paineladm';
       }
     </script>
 
-</body>
-
-</html>
+@endsection

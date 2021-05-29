@@ -1,53 +1,77 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap CSS -->
-    <link href="{{url().'/bootstrap/css/bootstrap.css'}}" rel="stylesheet">
-
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>@yield('TituloPagina')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
+    <link href="/storage/assets/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/storage/assets/css/entypo.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/storage/assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
 </head>
+
+
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+@php
+    $home = '/paineladm';
+@endphp
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Analistas
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Cadastro de Analistas</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Rotina Conclusão</a>
-                    </li>
-                </ul>
+{{--------MENU DE NAVEGAÇÃO--------}}
+<div class="navbar-container">
+    <div class="bg-dark navbar-dark" data-sticky="top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">
+                    <img alt="Logo" src="/storage/assets/img/Logaso.svg" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="icon-menu h4"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{$home}}" class="nav-link">Home</a>
+                        </li>
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+                        <li class="nav-item">
+                            <a href="/paineladm/analistas?departamento=Suporte&ativo=1" class="nav-link">Analistas</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Processamento Ticket</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Tester</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
         </div>
-    </nav>
-
-
-    <div class="jumbotron">
-        <h1>@yield('cabecalho')</h1>
     </div>
-
-    @yield('conteudo')
 </div>
 
-<script src="{{url().'/bootstrap/js/bootstrap.bundle.js'}}"></script>
-<script src="{{url().'/js/jquery.js'}}"></script>
+
+    @yield('conteudo')
+
+
+<script type="text/javascript" src="/storage/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/popper.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="/storage/assets/js/aos.js"></script>
+<script type="text/javascript" src="/storage/assets/js/flatpickr.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/jarallax.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/jarallax-video.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/jarallax-element.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/scrollMonitor.js"></script>
+<script type="text/javascript" src="/storage/assets/js/jquery.smartWizard.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/smooth-scroll.polyfills.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/prism.js"></script>
+<script type="text/javascript" src="/storage/assets/js/zoom.min.js"></script>
+<script type="text/javascript" src="/storage/assets/js/theme.js"></script>
 </body>
 </html>

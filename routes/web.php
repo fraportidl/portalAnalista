@@ -23,10 +23,10 @@ $router->get('/', function () use ($router) {
 Route::get('/painel', 'PainelController@index');
 Route::get('/paineladm', 'PainelAdministrativoController@index');
 Route::get('/paineladm/analistas', 'AnalistasController@index');
-Route::get('/paineladm/analistas/incluir', 'AnalistasController@incluir');
 Route::post('/paineladm/analistas/incluir', 'AnalistasController@store');
 Route::get('/paineladm/analistas/editar', 'AnalistasController@editarAnalista');
-Route::post('/paineladm/parametros', 'PainelAdministrativoController@updateParametros');
+Route::get('/paineladm/parametros', 'ParametrosController@index');
+Route::post('/paineladm/parametros', 'ParametrosController@updateParametros');
 
 
 $router->group(['prefix'=>'/api'], function() use($router) {
