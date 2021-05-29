@@ -25,6 +25,7 @@ Route::get('/paineladm', 'PainelAdministrativoController@index');
 Route::get('/paineladm/analistas', 'AnalistasController@index');
 Route::post('/paineladm/analistas/incluir', 'AnalistasController@store');
 Route::get('/paineladm/analistas/editar', 'AnalistasController@editarAnalista');
+Route::post('/paineladm/analistas/editar', 'AnalistasController@updateAnalista');
 Route::get('/paineladm/parametros', 'ParametrosController@index');
 Route::post('/paineladm/parametros', 'ParametrosController@updateParametros');
 
