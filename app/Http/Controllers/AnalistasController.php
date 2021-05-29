@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Soap\Cliente2;
 use App\Models\Entity\tbDepUsuarios;
-use App\Models\Entity\tbTickets;
 use App\Models\Entity\tbUsuarios;
 use App\Models\Persistencia\persistUsuario;
 use App\Models\Repository\RepTbDepUsuarios;
@@ -19,9 +18,9 @@ class AnalistasController extends Controller
 {
     private $em;
     /**
-     * @var RepTbUsuarios $repAnalistas
+     * @var RepTbUsuarios $RepAnalistas
      */
-    private $repAnalistas;
+    private $RepAnalistas;
     private $Cliente2;
     private $tipoRequest = 'formulariohelpdesk';
     /**
@@ -31,7 +30,7 @@ class AnalistasController extends Controller
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->repAnalistas = $this->em->getRepository(tbUsuarios::class);
+        $this->RepAnalistas = $this->em->getRepository(tbUsuarios::class);
         $this->Cliente2 = new Cliente2($this->tipoRequest);
         $this->RepTbDepUsuarios= $this->em->getRepository(tbDepUsuarios::class);
     }
@@ -46,7 +45,7 @@ class AnalistasController extends Controller
         /**
          * @var tbUsuarios $analista
          */
-        $analistas = $this->repAnalistas->UsuariosXDepartamento($nomeDepartamentoPesquisado, $request->ativo);
+        $analistas = $this->RepAnalistas->UsuariosXDepartamento($nomeDepartamentoPesquisado, $request->ativo);
 
         $departamentos = $this->RepTbDepUsuarios->buscaDepartamentos($nomeDepartamentoPesquisado);
         $ativo = $request->ativo;
@@ -60,14 +59,6 @@ return view('PainelAdministrativo/Analistas.gerenciamentoAnalista',[
 
     }
 
-public function editarAnalista(Request $request){
-        $analista  = $this->em->find(tbUsuarios::class,$request->codAnalista);
-
-        return view('PainelAdministrativo.editanalistas',[
-            'analista'=> $analista
-        ]);
-}
-
 
     public function store(Request $request)
     {
@@ -77,10 +68,30 @@ public function editarAnalista(Request $request){
         $Departamento = $this->RepTbDepUsuarios->buscaDepartamento($request->departamento);
         $IdDepartamento = $Departamento->getId();
         $nomeCompleto = $request->nome.' '.$request->sobrenome;
-        $persistUsuario = new persistUsuario($this->em,(int) $codUsuario,$IdDepartamento,$request->nome,$request->sobrenome,$nomeCompleto,null, $request->gerente);
+        $persistUsuario = new persistUsuario($this->em,(int) $codUsuario,$IdDepartamento,$request->nome,$request->sobrenome,$nomeCompleto,null, $request->gerente,1);
         $usuario = $persistUsuario->criaUsuario();
 
         return redirect('/paineladm/analistas?departamento='.$usuario->getCoddepartamentoint()->getNomedep().'&ativo='.$usuario->getAtivo());
+    }
+
+    public function editarAnalista(Request $request){
+        $analista  = $this->RepAnalistas->Usuario((int)$request->codAnalista);
+
+        return response()->json($analista, 200);
+    }
+
+    public function updateAnalista(Request $request)
+    {
+        $Departamento = $this->RepTbDepUsuarios->buscaDepartamento($request->departamentoAltera);
+        $IdDepartamento = $Departamento->getId();
+        $nomeCompleto = $request->nomeAltera.' '.$request->sobrenomeAltera;
+        $persistUsuario = new persistUsuario($this->em,(int) $request->codAnalista,$IdDepartamento,$request->nomeAltera,$request->sobrenomeAltera,$nomeCompleto,null, $request->cargoAltera,$request->statusAltera);
+        /**
+         * @var tbUsuarios $usuario
+         */
+        $usuario = $persistUsuario->alteraUsuario();
+
+        return redirect('/paineladm/analistas?departamento='.$usuario->getCoddepartamentoint()->getNomedep().'&ativo=1');
     }
 
 }
