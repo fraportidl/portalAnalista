@@ -81,7 +81,7 @@
 
                     <button class="btn btn-primary" onclick="redirecionaPaginaDep()">Buscar Analistas</button>
                 </div>
-
+ {{-----------------------TABELA DE ANALISTAS--------------------------}}
                 <div class="col-12 col-md-10 col-lg-9">
                     <div class="col-12 col-md-10 col-lg-9">
 
@@ -131,7 +131,7 @@
                                                     <i class="icon-dots-three-horizontal"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm">
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo">Alterar</a>
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo" onclick="carregaDadosAnalista({{$analista->getCodusuario()}})">Alterar</a>
 
                                                 </div>
                                             </div>
@@ -232,29 +232,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#" method="post">
+            <form action="" method="post" id="form-altera">
                 <div class="modal-body">
 
                     <div class="form-group row">
                         <div class=" col-sm">
-                            <label for="modal-nome" class="col-form-label">Nome:</label>
-                            <input type="text" class="form-control" id="modal-nome" name="nome">
+                            <label for="nomeAltera" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="modal-nome-altera" name="nomeAltera">
                         </div>
                         <div class="col-sm">
-                            <label for="modal-sobrenome" class="col-form-label">Sobrenome:</label>
-                            <input type="text" class="form-control" id="modal-sobrenome" name="sobrenome">
+                            <label for="sobrenomeAltera" class="col-form-label">Sobrenome:</label>
+                            <input type="text" class="form-control" id="modal-sobrenome-altera" name="sobrenomeAltera">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class=" col-sm-4">
-                            <label for="modal-numeroTicket" class="col-form-label">Numero Ticket:</label>
-                            <input type="text" class="form-control" id="modal-numeroTicket" name="codTicket">
+                            <label for="statusAltera" class="col-form-label">Status</label>
+                            </br>
+                            <select class="form-select" name="statusAltera">
+                                @if($ativo == 1)
+                                <option value="1" selected>Ativo</option>
+                                <option value="0">Inativo</option>
+                                @else
+                                <option value="0" selected>Inativo</option>
+                                <option value="1">Ativo</option>
+                                @endif
+                            </select>
                         </div>
                         <div class="col-sm-auto">
 
-                            <label for="departamento" class="col-form-label">Setor:</label>
+                            <label for="departamentoAltera" class="col-form-label">Setor:</label>
                             </br>
-                            <select class="form-select" name="departamento">
+                            <select class="form-select" name="departamentoAltera">
                                 <option value="{{$nomeDepartamentoPesquisado}}" selected>{{$nomeDepartamentoPesquisado}}</option>
                                 @foreach($departamentos as $departamento)
                                     <option value="{{$departamento->getNomedep()}}">{{$departamento->getNomedep()}}</option>
@@ -264,11 +273,10 @@
 
                     <div class="form-group row">
                         <div class="col-sm-auto">
-                            <label for="gerente" class="col-form-label">Cargo:</label>
+                            <label for="cargoAltera" class="col-form-label">Cargo:</label>
                             </br>
-                            <select class="form-select" name="gerente">
-                                <option value="0" selected>Analista</option>
-                                <option value="1">Gerente</option>
+                            <select class="form-select" name="cargoAltera" id="cargoAnalistaSelect">
+
                             </select>
                         </div>
                     </div>
@@ -303,6 +311,45 @@
           }
           window.location.href = '/paineladm/analistas?departamento='+nomeDepSelecionado+'&ativo='+ativo;
 
+      }
+
+      function  carregaDadosAnalista(codAnalista){
+          var requestURL = '/paineladm/analistas/editar?codAnalista='+codAnalista;
+          var request = new XMLHttpRequest();
+          request.open('GET', requestURL);
+          request.responseType = 'json';
+          request.send();
+          request.onload = function() {
+              var response = request.response;
+              var analista = response[0];
+              populaModalAlteracao(analista);
+
+          }
+      }
+
+      function populaModalAlteracao(analista){
+          let nomeAnalista = document.getElementById('modal-nome-altera');
+          let sobrenomeAnalista = document.getElementById('modal-sobrenome-altera');
+          let formAltera = document.getElementById('form-altera');
+
+          formAltera.action = '/paineladm/analistas/editar?codAnalista='+analista['codusuario'];
+          nomeAnalista.value = analista['nome'];
+          sobrenomeAnalista.value = analista['sobrenome'];
+          criaOptionCargo(analista['gerente'])
+      }
+
+      function criaOptionCargo(cargo){
+          let cargoAnalista = document.getElementById('cargoAnalistaSelect');
+          var tipoCargo = 'Analista';
+          var tipoCargo2 = 'Gerente';
+          if (cargo == 1){
+            tipoCargo = 'Gerente';
+            tipoCargo2 = 'Analista'
+          }
+          let optionSelected = new Option(tipoCargo,cargo,true,true);
+          let optionNotSelected = new Option(tipoCargo2,cargo,false,false);
+          cargoAnalista.add(optionSelected);
+          cargoAnalista.add(optionNotSelected);
       }
     </script>
 
