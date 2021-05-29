@@ -45,4 +45,13 @@ class RepTbUsuarios extends EntityRepository
         $result = $query->getResult();
         return $result;
     }
+
+    public function Usuario($codUsuario)
+    {
+        $dql = "SELECT u FROM $this->tab_Usuarios u
+        WHERE u.codusuario = $codUsuario";
+        $query = $this->em->createQuery($dql);
+        $result = $query->getArrayResult();
+        return $result;
+    }
 }
