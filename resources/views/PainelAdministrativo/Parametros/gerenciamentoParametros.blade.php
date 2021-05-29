@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-6">
                       <div class="form-group">
-                        <label for="ticketReferencia">Numero Ticket Referencia
+                        <label for="ticketReferencia">Dias de conclusão Ticket
                           <span class="text-red">*</span>
                         </label>
                         <input class="form-control form-control-lg" type="number" name="ticketReferencia" value="" id="ticketReferencia" />
@@ -109,11 +109,7 @@
                         <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgConclusao" id="msgConclusao"></textarea>
                       </div>
                     </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <button class="btn btn-secondary" type="submit" disabled>Salvar Alterações</button>
-                      </div>
-                    </div>
+
                   </form>
                 </div>
               </div>
@@ -128,7 +124,7 @@
                   <div class="alert alert-info text-small" role="alert">
                     <i class="icon-shield"></i>
                     <span>
-                      As empresas cadastradas serão excluidas na rotina de cobrança e conclusão.
+                      Os Clientes cadastrados serão excluidos na rotina de cobrança e conclusão.
                     </span>
                   </div>
                 </div>
@@ -157,6 +153,7 @@
                     <div class="col-12">
                       <div class="form-group">
                         <button class="btn btn-secondary" type="submit" disabled>Salvar alterações</button>
+                        <button class="btn btn-secondary" type="submit" disabled>Cancelar</button>
                       </div>
                     </div>
                   </form>
@@ -164,6 +161,8 @@
               </div>
             </div>
           </div>
+
+       {{--     --------------------------TESTER------------------------}}
           <div class="tab-pane fade" id="billing" role="tabpanel">
             <div class="container">
               <div class="row mb-4">
