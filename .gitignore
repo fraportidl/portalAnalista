@@ -7,5 +7,6 @@ Homestead.yaml
 .env.example
 tests/
 node_modules/
-PainelController.php
+/app/Http/Controllers/PainelController.php
+/app/Helpers/cache/
 
