@@ -4,7 +4,6 @@ namespace App\Models\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Models\Entity\tbDepUsuarios;
 
 
 /**
@@ -58,16 +57,26 @@ class tbUsuarios
      */
     private $codticket;
 
+    /**
+     * @Column (type="integer", nullable = true)
+     */
+    private $gerente;
+
+    /**
+     * @Column (type="text", nullable = true)
+     */
+    private $imagem;
+
+
+
     public function __construct()
     {
         $this->codticket = new ArrayCollection();
     }
 
 
-    /**
-     * @Column (type="integer", nullable = true)
-     */
-    private $gerente;
+
+
 
     public function setcodticket (tbTickets $codticket)
     {
@@ -283,4 +292,24 @@ class tbUsuarios
 
         return $this;
     }
+
+    /**
+     * Get the value of imagem
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * Set the value of imagem
+     *
+     * @return  self
+     */
+    public function setImagem($imagem)
+    {
+        $this->imagem = $imagem;
+        return $this;
+    }
+
 }
