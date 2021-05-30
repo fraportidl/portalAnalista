@@ -40,7 +40,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Processamento Ticket</a>
+                            <a href="/paineladm/parametros" class="nav-link">Processamento Ticket</a>
                         </li>
 
                         <li class="nav-item">
