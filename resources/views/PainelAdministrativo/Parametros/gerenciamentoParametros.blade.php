@@ -101,7 +101,7 @@
                               <label for="msgSaudacao">Mensagem de saudação:
                                   <span class="text-red">*</span>
                               </label>
-                              <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgSaudacao" id="msgSaudacao">Mensage de Saudação</textarea>
+                              <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgSaudacao" id="msgSaudacao">{{$parametros->getMensagemSaudacao()}}</textarea>
                           </div>
                      </div>
 
