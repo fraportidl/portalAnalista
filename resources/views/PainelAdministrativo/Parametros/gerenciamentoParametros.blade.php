@@ -30,6 +30,7 @@
           </div>
         </div>
       </section>
+
       <section class="flush-with-above space-0">
         <div class="bg-white">
           <div class="container">
@@ -48,9 +49,12 @@
           </div>
         </div>
       </section>
+
+
       <section class="flush-with-above height-80 d-block">
         <div class="tab-content">
           <div class="tab-pane fade show active" id="general" role="tabpanel">
+           <form action="/paineladm/parametros" method="post">
             <div class="container">
               <div class="row mb-4">
                 <div class="col">
@@ -67,53 +71,75 @@
                     <a href="https://blueti.atlassian.net/wiki/spaces/SUPORTE/pages/557514758/001+Fluxo+de+atendimento+geral" target="_blank">Consulte o fluxo operacional</a>
                   </div>
                 </div>
+
                 <div class="col-12 col-md-8 order-md-1">
-                  <form class="row">
+                  <div class="row">
+
+        {{-----------DIAS REENVIO TICKET---------------}}
                     <div class="col-6">
                       <div class="form-group">
                         <label for="diasReenvio">Dias de reenvio Ticket
                           <span class="text-red">*</span>
                         </label>
-                        <input class="form-control form-control-lg" type="number" name="diasReenvio" value="" id="diasReenvio" />
+                        <input class="form-control form-control-lg" type="number" name="diasReenvio" value="{{$parametros->getDiasReenvioTicket()}}" id="diasReenvio" />
                       </div>
                     </div>
+
+          {{------------DIAS CONCLUSÃO TICKET --------------}}
                     <div class="col-6">
                       <div class="form-group">
-                        <label for="ticketReferencia">Dias de conclusão Ticket
+                        <label for="diasConclusao">Dias de conclusão Ticket
                           <span class="text-red">*</span>
                         </label>
-                        <input class="form-control form-control-lg" type="number" name="ticketReferencia" value="" id="ticketReferencia" />
+                        <input class="form-control form-control-lg" type="number" name="diasConclusao" value="{{$parametros->getDiasConclusaoTicket()}}" id="diasConclusao" />
                       </div>
                     </div>
+
+          {{--------------MENSAGEM SAUDAÇÃO ------------}}
+                     <div class="col-12">
+                          <div class="form-group">
+                              <label for="msgSaudacao">Mensagem de saudação:
+                                  <span class="text-red">*</span>
+                              </label>
+                              <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgSaudacao" id="msgSaudacao">Mensage de Saudação</textarea>
+                          </div>
+                     </div>
+
+          {{--------------MENSAGEM PRIMEIRO ENVIO ------------}}
                     <div class="col-12">
                       <div class="form-group">
                         <label for="msgPrimeiroEnvio">Mensagem primeiro envio:
                           <span class="text-red">*</span>
                         </label>
-                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgPrimeiroEnvio" id="msgPrimeiroEnvio"></textarea>
+                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgPrimeiroEnvio" id="msgPrimeiroEnvio">{{$parametros->getMensagemReenvio()}}</textarea>
                       </div>
                     </div>
+
+                {{---------MENSAGEM SEGUNDO ENVIO--------------}}
                     <div class="col-12">
                       <div class="form-group">
                         <label for="msgSegundoEnvio">Mensagem segundo envio:
                           <span class="text-red">*</span>
                         </label>
-                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgSegundoEnvio" id="msgSegundoEnvio"></textarea>
+                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgSegundoEnvio" id="msgSegundoEnvio">{{$parametros->getMensagemReenvio2()}}</textarea>
                       </div>
                     </div>
+
+                {{-----------MENSAGEM CONCLUSÃO-------------}}
                     <div class="col-12">
                       <div class="form-group">
                         <label for="msgConclusao">Mensagem conclusão:
                           <span class="text-red">*</span>
                         </label>
-                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgConclusao" id="msgConclusao"></textarea>
+                        <textarea class="form-control form-control-lg" type="text-area" rows="4" name="msgConclusao" id="msgConclusao">{{$parametros->getMensagemConclusao()}}</textarea>
                       </div>
                     </div>
 
-                  </form>
+                  </div>
                 </div>
               </div>
               <hr>
+
               <div class="row mb-4">
                 <div class="col">
                   <h5>Exclusão de regra</h5>
@@ -129,9 +155,43 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-8 order-md-1">
-                  <form class="row">
+                  <div class="row">
                     <div class="col-12">
-                      <table class="table align-items-center">
+
+
+                        <table class="table align-items-center" id="tabelaClientes" @if ($clientesNaoConclui == null) hidden @endif >
+
+                            <thead>
+                            <tr>
+                                <th scope="col">Código Cliente</th>
+                                <th scope="col">Nome Cliente</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody id="CorpoTabelaClientesNaoConclui">
+                            @if($clientesNaoConclui != null)
+                            @foreach($clientesNaoConclui as $cliente)
+                            <tr>
+                                <th scope="row" >
+                                    <input class="form-control form-control-lg" type="text" name="codClienteNaoConclui[]" value="{{$cliente['codcliente']}}" id="codClienteNaoConclui" readonly/>
+                                </th>
+                                <td>
+                                    <input class="form-control form-control-lg" type="text" name="nomeClienteNaoConclui" value="{{$cliente['nomecliente']}}" id="nomeClienteNaoConclui"  readonly/>
+                                </td>
+                                <td>
+                                    <button onclick="removeCliente(this)" class="btn btn-md btn-danger" type="button"><i class="icon-squared-cross"></i> Cliente</button>
+                                </td>
+                            </tr>
+                            @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+
+
+
+
+
+                      <table class="table align-items-center" >
                         <thead>
                           <tr>
                             <th scope="col">Numero Ticket</th>
@@ -144,22 +204,25 @@
                                 <input class="form-control form-control-lg" type="number" name="numeroTicketCliente" value="" id="numeroTicketCliente" placeholder="Numero do ticket de referencia" />
                               </th>
                               <td>
-                                <button type="submit" class="btn btn-md btn-danger"><i class="icon-squared-cross"></i> Ticket</button>
+                                  <button onclick="adicionarCliente()" type="button" class="btn btn-md btn-danger"><i class="icon-squared-cross"></i>Adicionar</button>
                               </td>
                             </tr>
                           </tbody>
                       </table>
+
+
                     </div>
                     <div class="col-12">
                       <div class="form-group">
-                        <button class="btn btn-secondary" type="submit" disabled>Salvar alterações</button>
-                        <button class="btn btn-secondary" type="submit" disabled>Cancelar</button>
+                        <button class="btn btn-secondary" type="submit" >Salvar alterações</button>
+                        <button class="btn btn-secondary"  type="button" onclick="cancelarAlteracao()">Cancelar</button>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
+           </form>
           </div>
 
        {{--     --------------------------TESTER------------------------}}
@@ -224,5 +287,84 @@
       </section>
     </div>
 
+<script>
 
+    function removeCliente(Cliente){
+        if (confirm('Confirma remoção do cliente? ')){
+            var tr = Cliente.parentNode.parentNode;
+            tr.parentNode.removeChild(tr);
+        }
+
+    }
+
+    function adicionarCliente() {
+        let TicketInput = document.getElementById('numeroTicketCliente');
+        let codTicketInput = TicketInput.value;
+        var requestURL = '/paineladm/parametros/cliente?codTicket=' + codTicketInput;
+        var request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function () {
+            var response = request.response;
+            var cliente = response[0];
+            criaTrTd(cliente);
+
+        }
+    }
+
+    function criaTrTd(cliente){
+        let tabelaClientes = document.getElementById('tabelaClientes');
+        tabelaClientes.hidden = false;
+        let CorpoTabelaClientes = document.getElementById('CorpoTabelaClientesNaoConclui');
+        let tr = document.createElement("tr");
+        let th = document.createElement("th");
+        let tdNomeCliente = document.createElement("td");
+        let tdButtonRemoverCliente = document.createElement("td");
+        let buttonRemoverCliente = criaButtonRemoverCliente();
+        let inputcodcliente = criaInput('codClienteNaoConclui[]','codClienteNaoConclui',cliente['codcliente']);
+        let inputnomecliente =criaInput('nomeClienteNaoConclui','nomeClienteNaoConclui',cliente['nomecliente']);
+
+        th.setAttribute('scope','row');
+
+        CorpoTabelaClientes.appendChild(tr);
+        tr.appendChild(th);
+        th.appendChild(inputcodcliente);
+        tr.appendChild(tdNomeCliente);
+        tdNomeCliente.appendChild(inputnomecliente);
+        tr.appendChild(tdButtonRemoverCliente);
+        tdButtonRemoverCliente.appendChild(buttonRemoverCliente);
+
+        let TicketInput = document.getElementById('numeroTicketCliente').value = '';
+    }
+
+    function criaInput(name, id, value){
+        let input = document.createElement("input");
+        input.className= 'form-control form-control-lg';
+        input.type='text';
+        input.name= name;
+        input.id = id;
+        input.value = value;
+        input.readOnly = true;
+        return input;
+    }
+
+    function criaButtonRemoverCliente(){
+        let button = document.createElement("button");
+        let icone = document.createElement("i");
+        icone.className = 'icon-squared-cross';;
+        button.setAttribute('onclick','removeCliente(this)');
+        button.className = 'btn btn-md btn-danger';
+        button.type = 'button';
+        button.innerHTML = '<i class="icon-squared-cross"></i> Cliente';
+
+
+        return button;
+    }
+
+    function cancelarAlteracao(){
+        window.location = '/paineladm';
+    }
+
+</script>
 @endsection
