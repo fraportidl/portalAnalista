@@ -2,10 +2,8 @@
 namespace App\Models\Repository;
 
 use App\Models\Entity\tbTicketItens;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Console\Command\RunDqlCommand;
 
 class RepTbTicketItens extends EntityRepository
 {
@@ -50,7 +48,7 @@ class RepTbTicketItens extends EntityRepository
         $dql = "SELECT distinct  i.nomecliente, i.codcliente  from
         $this->tab_tbTicketItens i
         WHERE i.codcliente in ($codigoCliente)";
-        $query = $this->em->createQuery($dql)->getResult();
+        $query = $this->em->createQuery($dql)->getArrayResult();
         return $query;
 
     }
