@@ -50,20 +50,17 @@ class ParametrosController extends Controller
     public function index()
     {
 
-/*        $parametros = $this->em->find(tbParametros::class, 1);
+        $parametros = $this->em->find(tbParametros::class, 1);
 
-        $ClientesNConclui = [];
+        $ClientesNConclui = null;
         if($parametros->getCodCliNconcl() != null){
             $ClientesNConclui = $this->repositorioTicketItens->BuscaNomeClienteXCodigoCliente($parametros->getCodCliNconcl());
         }
 
-
-        return view('PainelAdministrativo.index', [
-            'parametros'=> $parametros,
-            'ClientesNaoConclui' => $ClientesNConclui
-        ]);*/
-
-        return view('PainelAdministrativo/Parametros.gerenciamentoParametros');
+        return view('PainelAdministrativo/Parametros.gerenciamentoParametros', [
+            'parametros'=>$parametros,
+            'clientesNaoConclui'=>$ClientesNConclui
+        ]);
     }
 
 
@@ -71,37 +68,32 @@ class ParametrosController extends Controller
     {
 
         $ClientesNaoConclui = null;
-        if ($request->has('ClientesNConclui')){
-            $arrayClientesNaoConclui = $request->ClientesNConclui;
+        if ($request->has('codClienteNaoConclui')){
+            $arrayClientesNaoConclui = $request->codClienteNaoConclui;
             foreach ($arrayClientesNaoConclui as $ClienteNaoConclui) {
                 $ClientesNaoConclui .= $ClienteNaoConclui . ',';
             }
-        }
-
-        if ($request->has('CodTicket')){
-            $CodticketClientesNaoConclui = $request->CodTicket;
-            foreach ($CodticketClientesNaoConclui as $CodTicket){
-                $codClienteNovo = $this->repositorioTicket->BuscaCodCliente($CodTicket);
-                $ClientesNaoConclui .=  $codClienteNovo . ',';
-            }
-        }
-
-        if ($ClientesNaoConclui == null){
-            $ClientesNaoConcluiBanco = $ClientesNaoConclui;
-        }else{
-            $ClientesNaoConcluiBanco =  substr($ClientesNaoConclui, 0, -1);
+        $ClientesNaoConclui = substr($ClientesNaoConclui, 0, -1);
         }
 
 
         $persistParametros = new persistParametros($this->em);
-        $persistParametros->atualizaParamRotinaConlusao((int)$request->DiasReenvioTicket,
-            (int)$request->DiasConclusaoTicket,
-            $request->MensagemPrimeiroReenvio,
-            $request->MensagemSegundoReenvio,
-            $request->MensagemConclusao,
-            $ClientesNaoConcluiBanco);
+        $persistParametros->atualizaParamRotinaConlusao((int)$request->diasReenvio,
+            (int)$request->diasConclusao,
+            $request->msgPrimeiroEnvio,
+            $request->msgSegundoEnvio,
+            $request->msgConclusao,
+            $ClientesNaoConclui);
 
-        return redirect()->action('PainelAdministrativoController@index');
+        return redirect('/paineladm/parametros');
+
+    }
+
+    public function buscaClienteNaoConclui(Request $request)
+    {
+        $codClienteNaoConclui = $this->repositorioTicket->BuscaCodCliente((int)$request->codTicket);
+        $ClientesNConclui = $this->repositorioTicketItens->BuscaNomeClienteXCodigoCliente($codClienteNaoConclui);
+        return response()->json($ClientesNConclui);
     }
 
 }
