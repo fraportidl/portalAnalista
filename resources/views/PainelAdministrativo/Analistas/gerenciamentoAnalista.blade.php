@@ -108,7 +108,7 @@
                                     <tr class="bg-white">
                                         <th scope="row">
                                             <div class="media align-items-center">
-                                                <img alt="Image" src="/storage/assets/img/Matheus.jpeg" class="avatar" />
+                                                <img alt="Image" src="{{$analista->getImagem()}}" class="avatar" />
                                                 <div class="media-body">
                           <span class="h6 mb-0">{{$analista->getNome()}}
                           </span>
@@ -163,7 +163,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/paineladm/analistas/incluir" method="post">
+            <form action="/paineladm/analistas/incluir" method="post" enctype="multipart/form-data">
             <div class="modal-body">
 
                     <div class="form-group row">
@@ -207,7 +207,8 @@
                 <div class="col-sm-auto">
                     <div class="form-group">
                         <label for="imagemAnalista">Imagem Analista</label>
-                        <input type="file" class="form-control-file" id="Imagem-Analista" name="imagemAnalista">
+                        <input type="file" class="form-control-file" id="imagemAnalista" name="imagemAnalista">
+
                     </div>
                 </div>
                 </div>
@@ -232,7 +233,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" id="form-altera">
+            <form action="" method="post" id="form-altera" enctype="multipart/form-data" >
                 <div class="modal-body">
 
                     <div class="form-group row">
@@ -283,8 +284,8 @@
                     </div>
                         <div class="col-sm-auto">
                             <div class="form-group">
-                                <label for="imagemAnalista">Imagem Analista</label>
-                                <input type="file" class="form-control-file" id="Imagem-Analista" name="imagemAnalista">
+                                <label for="imagemAnalistaAltera">Imagem Analista</label>
+                                <input type="file" class="form-control-file" id="imagemAnalistaAltera" name="imagemAnalistaAltera" >
                             </div>
                         </div>
                     </div>
@@ -322,6 +323,7 @@
           request.onload = function() {
               var response = request.response;
               var analista = response[0];
+              console.log(analista)
               populaModalAlteracao(analista);
 
           }
@@ -335,6 +337,7 @@
           formAltera.action = '/paineladm/analistas/editar?codAnalista='+analista['codusuario'];
           nomeAnalista.value = analista['nome'];
           sobrenomeAnalista.value = analista['sobrenome'];
+
           criaOptionCargo(analista['gerente'])
       }
 
@@ -351,6 +354,8 @@
           cargoAnalista.add(optionSelected);
           cargoAnalista.add(optionNotSelected);
       }
+
+
     </script>
 
 @endsection
