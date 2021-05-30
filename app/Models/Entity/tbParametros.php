@@ -49,6 +49,12 @@ class tbParametros
     private $codCliNconcl;
 
     /**
+     * @Column(type="text", nullable = true)
+     */
+    private $mensagemSaudacao;
+
+
+    /**
      * Get the value of Id
      */
     public function getId()
@@ -207,4 +213,24 @@ class tbParametros
 
         return $this;
     }
+
+    /**
+     * Get the value of mensagemSaudacao
+     */
+    public function getMensagemSaudacao()
+    {
+        return $this->mensagemSaudacao;
+    }
+
+    /**
+     * Set the value of mensagemSaudacao
+     *
+     * @return  self
+     */
+    public function setMensagemSaudacao($mensagemSaudacao)
+    {
+        $this->mensagemSaudacao = $mensagemSaudacao;
+        return $this;
+    }
+
 }
