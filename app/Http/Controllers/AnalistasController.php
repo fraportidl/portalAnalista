@@ -12,6 +12,7 @@ use App\Models\Repository\RepTbDepUsuarios;
 use App\Models\Repository\RepTbUsuarios;
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class AnalistasController extends Controller
@@ -62,13 +63,21 @@ return view('PainelAdministrativo/Analistas.gerenciamentoAnalista',[
 
     public function store(Request $request)
     {
+
         $codTicketAnalista = $request->codTicket;
         $ticket = $this->Cliente2->ticket($codTicketAnalista);
         $codUsuario = $ticket->dados[0]->codusuario;
         $Departamento = $this->RepTbDepUsuarios->buscaDepartamento($request->departamento);
         $IdDepartamento = $Departamento->getId();
         $nomeCompleto = $request->nome.' '.$request->sobrenome;
-        $persistUsuario = new persistUsuario($this->em,(int) $codUsuario,$IdDepartamento,$request->nome,$request->sobrenome,$nomeCompleto,null, $request->gerente,1);
+        $caminhoImagemAnalista = str_replace('http://localhost','',Storage::url('FotoAnalista/Blue.jpg'));
+
+        if ($request->has('imagemAnalista')){
+            $imagemAnalista = $request->file('imagemAnalista')->store('fotoAnalista');
+            $caminhoImagemAnalista = str_replace('http://localhost','',Storage::url($imagemAnalista));
+        }
+
+        $persistUsuario = new persistUsuario($this->em,(int) $codUsuario,$IdDepartamento,$request->nome,$request->sobrenome,$nomeCompleto,null, $request->gerente,1,$caminhoImagemAnalista);
         $usuario = $persistUsuario->criaUsuario();
 
         return redirect('/paineladm/analistas?departamento='.$usuario->getCoddepartamentoint()->getNomedep().'&ativo='.$usuario->getAtivo());
@@ -82,10 +91,23 @@ return view('PainelAdministrativo/Analistas.gerenciamentoAnalista',[
 
     public function updateAnalista(Request $request)
     {
+
         $Departamento = $this->RepTbDepUsuarios->buscaDepartamento($request->departamentoAltera);
         $IdDepartamento = $Departamento->getId();
         $nomeCompleto = $request->nomeAltera.' '.$request->sobrenomeAltera;
-        $persistUsuario = new persistUsuario($this->em,(int) $request->codAnalista,$IdDepartamento,$request->nomeAltera,$request->sobrenomeAltera,$nomeCompleto,null, $request->cargoAltera,$request->statusAltera);
+        $usuario =$this->em->find(tbUsuarios::class,(int)$request->codAnalista);
+        $caminhoImagemAnalista = $usuario->getImagem();
+
+        if ($request->has('imagemAnalistaAltera')){
+            $imagemAnalista = $request->file('imagemAnalistaAltera')->store('fotoAnalista');
+            $caminhoImagemAnalista = str_replace('http://localhost','',Storage::url($imagemAnalista));
+        }
+
+        if($caminhoImagemAnalista == null){
+            $caminhoImagemAnalista = str_replace('http://localhost','',Storage::url('FotoAnalista/Blue.jpg'));
+        }
+
+        $persistUsuario = new persistUsuario($this->em,(int) $request->codAnalista,$IdDepartamento,$request->nomeAltera,$request->sobrenomeAltera,$nomeCompleto,null, $request->cargoAltera,$request->statusAltera, $caminhoImagemAnalista);
         /**
          * @var tbUsuarios $usuario
          */
