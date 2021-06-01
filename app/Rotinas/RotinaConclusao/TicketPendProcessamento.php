@@ -77,7 +77,7 @@ class TicketPendProcessamento
             }
 
             try {
-                $nomecliente = $this->RepTicketItens->BuscaNomeCliente($CodTicket);
+                $nomecliente = $this->RepTicketItens->BuscaNomeCliente((int)$ticket['codcliente']);
             } catch (NoResultException $e) {
                 $nomecliente = '';
             }
