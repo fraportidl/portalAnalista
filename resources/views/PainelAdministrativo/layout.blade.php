@@ -10,6 +10,7 @@
     <link href="/storage/assets/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/storage/assets/css/entypo.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/storage/assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://cdn.tiny.cloud/1/yzlb16p4g1h6un8rr7sl1e62cxq1ve2oi5xetwuftxrqmlj2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 
