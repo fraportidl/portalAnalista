@@ -14,13 +14,14 @@ class RepTbTicketItens extends EntityRepository
         $this->tab_tbTicketItens = tbTicketItens::class;
     }
 
-    public function BuscaNomeCliente($codTicket){
+
+    public function BuscaNomeCliente($codCliente){
         $dql = "SELECT i.nomecliente
                 FROM $this->tab_tbTicketItens i
-                WHERE i.codticket = $codTicket";
+                WHERE i.codcliente = $codCliente";
         $query = $this->em->createQuery($dql)
-        ->setMaxResults(1)
-        ->getSingleScalarResult();
+            ->setMaxResults(1)
+            ->getSingleScalarResult();
         return $query;
     }
 
