@@ -80,7 +80,7 @@ return [
         ],
 
         'sqlsrv' => [
-            'driver' => 'pdo_sqlsrv',
+            'driver' => env('DB_CONNECTION'),
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', 'localhost'),
             'Database' => env('DB_DATABASE', 'forge'),
