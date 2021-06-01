@@ -126,7 +126,9 @@
                                         </td>
 
                                         <td>
-                                            <div class="dropdown">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo" onclick="carregaDadosAnalista({{$analista->getCodusuario()}})"><i class="bi bi-pencil-square"></i></button>
+ {{--                                           <div class="dropdown">
+
                                                 <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="icon-dots-three-horizontal"></i>
                                                 </button>
@@ -134,7 +136,7 @@
                                                     <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo" onclick="carregaDadosAnalista({{$analista->getCodusuario()}})">Alterar</a>
 
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                         </td>
                                     </tr>
                                     <tr class="table-divider">
@@ -185,7 +187,7 @@
 
                             <label for="departamento" class="col-form-label">Setor:</label>
                             </br>
-                            <select class="form-select" name="departamento">
+                            <select class="form-select btn" name="departamento">
                                 <option value="{{$nomeDepartamentoPesquisado}}" selected>{{$nomeDepartamentoPesquisado}}</option>
                                 @foreach($departamentos as $departamento)
                                     <option value="{{$departamento->getNomedep()}}">{{$departamento->getNomedep()}}</option>
@@ -197,7 +199,7 @@
                 <div class="col-sm-auto">
                     <label for="gerente" class="col-form-label">Cargo:</label>
                     </br>
-                    <select class="form-select" name="gerente">
+                    <select class="form-select btn" name="gerente">
                         <option value="0" selected>Analista</option>
                             <option value="1">Gerente</option>
                     </select>
@@ -250,7 +252,7 @@
                         <div class=" col-sm-4">
                             <label for="statusAltera" class="col-form-label">Status</label>
                             </br>
-                            <select class="form-select" name="statusAltera">
+                            <select class="form-select btn" name="statusAltera">
                                 @if($ativo == 1)
                                 <option value="1" selected>Ativo</option>
                                 <option value="0">Inativo</option>
@@ -264,7 +266,7 @@
 
                             <label for="departamentoAltera" class="col-form-label">Setor:</label>
                             </br>
-                            <select class="form-select" name="departamentoAltera">
+                            <select class="form-select btn" name="departamentoAltera">
                                 <option value="{{$nomeDepartamentoPesquisado}}" selected>{{$nomeDepartamentoPesquisado}}</option>
                                 @foreach($departamentos as $departamento)
                                     <option value="{{$departamento->getNomedep()}}">{{$departamento->getNomedep()}}</option>
@@ -274,7 +276,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-auto">
-                            <label for="cargoAltera" class="col-form-label">Cargo:</label>
+                            <label for="cargoAnalistaSelect" class="col-form-label">Cargo:</label>
                             </br>
                             <select class="form-select" name="cargoAltera" id="cargoAnalistaSelect">
 
@@ -343,14 +345,18 @@
 
       function criaOptionCargo(cargo){
           let cargoAnalista = document.getElementById('cargoAnalistaSelect');
+          var valueCargo = 0;
+          var valueCargo2 = 1;
           var tipoCargo = 'Analista';
           var tipoCargo2 = 'Gerente';
           if (cargo == 1){
             tipoCargo = 'Gerente';
             tipoCargo2 = 'Analista'
+            valueCargo = 1;
+            valueCargo2 = 0;
           }
-          let optionSelected = new Option(tipoCargo,cargo,true,true);
-          let optionNotSelected = new Option(tipoCargo2,cargo,false,false);
+          let optionSelected = new Option(tipoCargo,valueCargo,true,true);
+          let optionNotSelected = new Option(tipoCargo2,valueCargo2,false,false);
           cargoAnalista.add(optionSelected);
           cargoAnalista.add(optionNotSelected);
       }
