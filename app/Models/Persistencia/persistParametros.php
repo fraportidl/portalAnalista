@@ -12,7 +12,9 @@ class  persistParametros
     private $em;
     private $data;
     private $platform;
-
+    /**
+     * @var tbParametros $tab_parametros
+     */
     private $tab_parametros;
 
     public function __construct(EntityManagerInterface $em)
@@ -30,11 +32,12 @@ class  persistParametros
         $this->em->flush();
     }
 
-    public function atualizaParamRotinaConlusao($diasReenvio,$diasConclusao, $mensagemReenvio, $mensagemReenvio2, $mensagemConclusao, $clienteNaoConclui){
+    public function atualizaParamRotinaConlusao($diasReenvio,$diasConclusao,$mensagemSaudacao, $mensagemReenvio, $mensagemReenvio2, $mensagemConclusao, $clienteNaoConclui){
 
 
         $this->tab_parametros->setDiasReenvioTicket($diasReenvio);
         $this->tab_parametros->setDiasConclusaoTicket($diasConclusao);
+        $this->tab_parametros->setMensagemSaudacao($mensagemSaudacao);
         $this->tab_parametros->setMensagemReenvio($mensagemReenvio);
         $this->tab_parametros->setMensagemReenvio2($mensagemReenvio2);
         $this->tab_parametros->setMensagemConclusao($mensagemConclusao);
