@@ -23,7 +23,6 @@ class ProcessaDadosApi
     private $data;
     private $platform;
     private $persistParametros;
-    private $persistTicket;
     private $persistTicketItem;
     private $requestDadosTicket = 'formulariohelpdesk';
 
@@ -35,7 +34,6 @@ class ProcessaDadosApi
         $this->data = new DateTimeType();
         $this->platform = new SQLServer2012Platform();
         $this->persistParametros = new persistParametros($this->em);
-        $this->persistTicket = new persistTicket($this->em);
         $this->persistTicketItem = new persistTicketItem($this->em);
     }
 
@@ -47,14 +45,13 @@ class ProcessaDadosApi
 
        // $atualizaTicket = $this->ClienteApi->ApiBuscaTicketAlterados($dthrsincronizacaoSoap);
        // $atualizaTicket = $this->ClienteApi->ApiNovosTicket('2021/01/21 00:00:00');
-       $atualizaTicket = $this->ClienteApi->ticket('102271');
+       $atualizaTicket = $this->ClienteApi->ticket('99671');
         if ($atualizaTicket->statusRetorno == "ok") {
 
             foreach ($atualizaTicket->dados as $dado) {
 
                 $dtalteracaoTicket = $this->data->convertToPHPValue(Date('Y-m-d H:i:s', (int) $dado->dtalteracao), $this->platform);
-
-                $this->persistTicket->gravaTicketsbanco(
+                $persistTicket = new persistTicket($this->em,
                     $dado->codticket,
                     $dado->coddepartamento,
                     $dado->codcategoria,
@@ -72,6 +69,7 @@ class ProcessaDadosApi
                     $dado->dtleituracliente,
                     $dado->dtprevisao
                 );
+                $persistTicket->gravaTicketsbanco();
 
                 if ($dtalteracaoTicket >= $dthrsincronizacaoSoap) {
                     $interacaoTicket = $this->ClienteApi->ApiObterinteracaoticket($dado->codticket);
