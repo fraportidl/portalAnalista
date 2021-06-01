@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Soap\Cliente2;
+use App\Http\Soap\Cliente3;
 use App\Models\Entity\tbDepUsuarios;
 use App\Models\Entity\tbUsuarios;
 use App\Models\Persistencia\persistUsuario;
@@ -23,6 +24,7 @@ class AnalistasController extends Controller
      */
     private $RepAnalistas;
     private $Cliente2;
+    private $Cliente3;
     private $tipoRequest = 'formulariohelpdesk';
     /**
      * @var RepTbDepUsuarios $RepTbDepUsuarios
@@ -33,6 +35,7 @@ class AnalistasController extends Controller
         $this->em = $em;
         $this->RepAnalistas = $this->em->getRepository(tbUsuarios::class);
         $this->Cliente2 = new Cliente2($this->tipoRequest);
+        $this->Cliente3 = new Cliente3($this->tipoRequest);
         $this->RepTbDepUsuarios= $this->em->getRepository(tbDepUsuarios::class);
     }
 
@@ -66,6 +69,9 @@ return view('PainelAdministrativo/Analistas.gerenciamentoAnalista',[
 
         $codTicketAnalista = $request->codTicket;
         $ticket = $this->Cliente2->ticket($codTicketAnalista);
+        if($ticket->statusRetorno == 'consultaMenorQueLimiteDe45Segundos'){
+            $ticket = $this->Cliente3->ticket($codTicketAnalista);
+        }
         $codUsuario = $ticket->dados[0]->codusuario;
         $Departamento = $this->RepTbDepUsuarios->buscaDepartamento($request->departamento);
         $IdDepartamento = $Departamento->getId();
