@@ -58,7 +58,7 @@
             <div class="container">
               <div class="row mb-4">
                 <div class="col">
-                  <h5>Detalhes de reenvio e conclusao de tickets</h5>
+                  <h5>Detalhes de reenvio e conclusão de tickets</h5>
                 </div>
               </div>
               <div class="row">
@@ -371,6 +371,8 @@
 <script>
     tinymce.init({
         selector: 'textarea',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
         schema: "html4",
         plugins: 'link',
         menubar:false,
@@ -384,8 +386,8 @@
         convert_fonts_to_spans : false,
         link_assume_external_targets: true,
         link_context_toolbar: true,
-        valid_elements : "b/strong,u,i/em,font[color|size],br/p,a[href|target],h1,h2,h3,h4,h5,h6",
-        valid_children : "b,u,i,font[color|size},br,a[href|target],h1,h2,h3,h4,h5,h6",
+        valid_elements : "b/strong,u,i/em,font[color|size],br/p,a[href],h1,h2,h3,h4,h5,h6",
+        valid_children : "b,u,i,font[color|size},br,a,h1,h2,h3,h4,h5,h6",
         cleanup_on_startup : false,
         cleanup : false,
         relative_urls: false,
@@ -393,8 +395,7 @@
         formats: {
             forecolor : {inline : 'font', attributes: { color: "%value" }},
             fontsize: {inline : 'font', attributes: { size: "%value" }},
-            link: {inline:'a', attribute:{href:"%value"}},
-            underline : {inline : 'u', exact : true}
+            underline : {inline : 'u', exact : true},
         },
     });
 </script>

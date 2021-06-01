@@ -53,6 +53,10 @@ class tbParametros
      */
     private $mensagemSaudacao;
 
+    /**
+     * @Column(type="text", nullable = true)
+     */
+    private $mensagemSaudacaoPosExp;
 
     /**
      * Get the value of Id
@@ -232,5 +236,25 @@ class tbParametros
         $this->mensagemSaudacao = $mensagemSaudacao;
         return $this;
     }
+
+    /**
+     * Get the value of mensagemSaudacaoPosExp
+     */
+    public function getmensagemSaudacaoPosExp()
+    {
+        return $this->mensagemSaudacaoPosExp;
+    }
+
+    /**
+     * Set the value of mensagemSaudacaoPosExp
+     *
+     * @return  self
+     */
+    public function setmensagemSaudacaoPosExp($mensagemSaudacaoPosExp)
+    {
+        $this->mensagemSaudacaoPosExp = $mensagemSaudacaoPosExp;
+        return $this;
+    }
+
 
 }
