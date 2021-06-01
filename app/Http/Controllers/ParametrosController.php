@@ -80,6 +80,7 @@ class ParametrosController extends Controller
         $persistParametros = new persistParametros($this->em);
         $persistParametros->atualizaParamRotinaConlusao((int)$request->diasReenvio,
             (int)$request->diasConclusao,
+            $request->msgSaudacao,
             $request->msgPrimeiroEnvio,
             $request->msgSegundoEnvio,
             $request->msgConclusao,
