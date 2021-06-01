@@ -367,4 +367,35 @@
     }
 
 </script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        schema: "html4",
+        plugins: 'link',
+        menubar:false,
+        toolbar: ' formatselect | ' +
+            'bold italic underline | fontsizeselect forecolor | bullist numlist outdent indent |' + 'link |' +
+            'removeformat | help',
+        toolbar_mode: 'floating',
+        element_format: 'html',
+        entity_encoding : 'raw',
+        forced_root_block: false,
+        convert_fonts_to_spans : false,
+        link_assume_external_targets: true,
+        link_context_toolbar: true,
+        valid_elements : "b/strong,u,i/em,font[color|size],br/p,a[href|target],h1,h2,h3,h4,h5,h6",
+        valid_children : "b,u,i,font[color|size},br,a[href|target],h1,h2,h3,h4,h5,h6",
+        cleanup_on_startup : false,
+        cleanup : false,
+        relative_urls: false,
+        remove_script_host: false,
+        formats: {
+            forecolor : {inline : 'font', attributes: { color: "%value" }},
+            fontsize: {inline : 'font', attributes: { size: "%value" }},
+            link: {inline:'a', attribute:{href:"%value"}},
+            underline : {inline : 'u', exact : true}
+        },
+    });
+</script>
 @endsection
