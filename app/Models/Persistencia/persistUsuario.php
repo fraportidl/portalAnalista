@@ -20,8 +20,9 @@ class persistUsuario
     private $hrregrapainel;
     private $gerente;
     private $ativo;
+    private $imagem;
 
-    public function __construct(EntityManagerInterface $em, $codUsuario,$codDepartamento, $nome, $sobrenome, $nomeCompleto, $hrregrapainel, $gerente,$ativo)
+    public function __construct(EntityManagerInterface $em, $codUsuario,$codDepartamento, $nome, $sobrenome, $nomeCompleto, $hrregrapainel, $gerente,$ativo,$imagem)
     {
         $this->em = $em;
         $this->codUsuario=$codUsuario;
@@ -32,6 +33,7 @@ class persistUsuario
         $this->hrregrapainel = $hrregrapainel;
         $this->gerente = $gerente;
         $this->ativo = $ativo;
+        $this->imagem=$imagem;
 
     }
 
@@ -50,7 +52,7 @@ class persistUsuario
 
     public function alteraUsuario()
     {
-        $usuario = $this->em->getReference(tbUsuarios::class,$this->codUsuario);
+        $usuario = $this->em->find(tbUsuarios::class,$this->codUsuario);
         $usuarioAlterado = $this->setaValoresUsuario($usuario);
         return $usuarioAlterado;
     }
@@ -65,6 +67,7 @@ class persistUsuario
         $usuario->setAtivo((int)$this->ativo);
         $usuario->setQtddiasatraso(null);
         $usuario->setMetahrconclticket(null);
+        $usuario->setImagem($this->imagem);
         $this->em->flush();
         return $usuario;
     }
