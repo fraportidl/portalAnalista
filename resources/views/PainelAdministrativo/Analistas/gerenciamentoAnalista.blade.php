@@ -126,7 +126,7 @@
                                         </td>
 
                                         <td>
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo" onclick="carregaDadosAnalista({{$analista->getCodusuario()}})"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@ddo" onclick="carregaDadosAnalista({{$analista->getCodusuario()}})"><i class="icon-pencil"></i></button>
  {{--                                           <div class="dropdown">
 
                                                 <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
