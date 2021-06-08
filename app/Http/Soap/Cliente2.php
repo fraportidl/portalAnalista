@@ -57,11 +57,12 @@ class Cliente2 extends Cliente1
         return $result;
     }
 
-    public function EnviaMensagemSaudacao(int $codTicket, $mensagem)
+    public function EnviaMensagemSaudacao(int $codTicket, $mensagem, $dtPrevisao)
     {
         $request = $this->montarequestdados();
         $request -> dados -> codticket = $codTicket . "";
         $request -> dados -> interacao = $mensagem;
+        $request -> dados -> dtprevisaostring = $dtPrevisao;
         $result = $this->atualizar($request);
         return $result;
     }
