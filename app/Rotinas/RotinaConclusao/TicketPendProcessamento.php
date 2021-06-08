@@ -11,7 +11,7 @@ use App\Models\Repository\RepTbTicketItens;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Helpers\Datas;
 use App\Helpers\Log;
-use App\Models\Persistencia\persistTicket;
+use App\Models\Persistencia\updateTicket;
 use DateTime;
 use Doctrine\ORM\NoResultException;
 
@@ -30,7 +30,7 @@ class TicketPendProcessamento
 
     private $ClienteApi;
 
-    private $persistTicket;
+    private $UpdateTicket;
     private $dataHoje;
     private $DatahoraAtual;
     private $requestDadosTicket = 'formulariohelpdesk';
@@ -41,7 +41,7 @@ class TicketPendProcessamento
         $this->RepTicket = $this->em->getRepository(tbTickets::class);
         $this->RepTicketItens = $this->em->getRepository(tbTicketItens::class);
         $this->ClienteApi = new Cliente2($this->requestDadosTicket);
-        $this->persistTicket = new persistTicket($this->em);
+        $this->UpdateTicket = new updateTicket($this->em);
         $this->dataHoje = date('d/m/Y H:i:s');
         $this->DatahoraAtual = new DateTime('now');
 
@@ -89,7 +89,7 @@ class TicketPendProcessamento
                 is_null($ticket['dthrreenvioticket']) && is_null($ticket['dthrreenvioticket2'])
             ) {
                 $mensagemReenvio = $this->criaMensagem($nomecliente, $parametros->getMensagemReenvio(), $ticket['nome']);
-                $this->persistTicket->atualizadrhrReenvio($CodTicket, $this->DatahoraAtual);
+                $this->UpdateTicket->atualizadrhrReenvio($CodTicket, $this->DatahoraAtual);
                 $this->ClienteApi->ApiReenviaTicket($CodTicket, $mensagemReenvio);
                 $log = "1º Cobrança Ticket: {$CodTicket} Data Ultima Interação {$dtultimaInteracaoLog} Analista: {$ticket['nome']} Processado em: {$this->dataHoje}";
                 //echo "Ticket cobrados 1º Cobrança";
@@ -103,13 +103,13 @@ class TicketPendProcessamento
             ) {
                 if ($dtultimaInteracaoCliente < $ticket['dthrreenvioticket']) {
                     //$mensagemReenvio = $this->criaMensagem($nomecliente,$parametros->getMensagemReenvio2(),'Time Suporte');
-                    $this->persistTicket->atualizadrhrReenvio2($CodTicket, $this->DatahoraAtual);
+                    $this->UpdateTicket->atualizadrhrReenvio2($CodTicket, $this->DatahoraAtual);
                     $this->ClienteApi->ApiCobrancaAnalista($CodTicket);
                     $log = "Retono Pendente Empresa Ticket: {$CodTicket} Data Ultima Interação {$dtultimaInteracaoLog} Analista: {$ticket['nome']} Processado em: {$this->dataHoje}";
                     //echo "Ticket cobrados 2º Cobrança";
                     Log::GeraLog($nomeArquivoLog, $log, $apagaLog);
                 } else {
-                    $this->persistTicket->atualizadrhrReenvio($CodTicket, Null);
+                    $this->UpdateTicket->atualizadrhrReenvio($CodTicket, Null);
                 }
 
             }
@@ -136,14 +136,14 @@ class TicketPendProcessamento
                     if ($dtultimaInteracaoCliente < $DataUltimaInteracaoConclTelefone) {
                         $mensagemConclusao = $this->criaMensagem($nomecliente, $parametros->getMensagemConclusao(), 'Time Suporte');
                         $this->ClienteApi->ConcluiTicket($CodTicket, $mensagemConclusao);
-                        $this->persistTicket->setaConcluidoAutomaticamente($CodTicket);
+                        $this->UpdateTicket->setaConcluidoAutomaticamente($CodTicket);
                         $log = "Concluido Ticket: {$CodTicket} Data Ultima Interação {$dtultimaInteracaoLog} Analista: {$ticket['nome']} Processado em: {$this->dataHoje}";
                         //echo "Ticket Concluidos";
                         Log::GeraLog($nomeArquivoLog, $log, $apagaLog);
                     }
                     else {
-                        $this->persistTicket->atualizadrhrReenvio($CodTicket, Null);
-                        $this->persistTicket->atualizadrhrReenvio2($CodTicket, Null);
+                        $this->UpdateTicket->atualizadrhrReenvio($CodTicket, Null);
+                        $this->UpdateTicket->atualizadrhrReenvio2($CodTicket, Null);
                     }
                 }
 
