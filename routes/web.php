@@ -21,6 +21,7 @@ $router->get('/', function () use ($router) {
 });
 
 Route::get('/painel', 'PainelController@index');
+Route::get('login', 'LoginController@index');
 Route::get('/paineladm', 'PainelAdministrativoController@index');
 Route::get('/paineladm/analistas', 'AnalistasController@index');
 Route::post('/paineladm/analistas/incluir', 'AnalistasController@store');
@@ -34,5 +35,4 @@ Route::post('/paineladm/parametros', 'ParametrosController@updateParametros');
 $router->group(['prefix'=>'/api'], function() use($router) {
     $router->get('/painel', 'PainelController@getDadosPainel');
     $router->get('/ticketemanalise', 'RelatorioController@getTicketAnalise');
-    $router->get('/parametrospainel', 'ParametrosPainelController@index');
 });
