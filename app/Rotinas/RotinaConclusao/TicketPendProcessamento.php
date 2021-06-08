@@ -97,7 +97,7 @@ class TicketPendProcessamento
             }
 
             //SEGUNDO REENVIO/RETORNO PENDENTE EMPRESA
-            if (
+            if (is_null($dtUltimaInteracaoConclTelefone) &&
                 $diffdataDiasUltIntAnalista >= $parametros->getDiasReenvioTicket() &&
                 !is_null($ticket['dthrreenvioticket']) && is_null($ticket['dthrreenvioticket2'])
             ) {
@@ -131,7 +131,7 @@ class TicketPendProcessamento
 
                 if (
                     Datas::calculaDiffdata($dtUltimaInteracaoConclTelefone)->d >= $parametros->getDiasConclusaoTicket() &&
-                    !is_null($ticket['dthrreenvioticket']) && !is_null($ticket['dthrreenvioticket2'])
+                    !is_null($ticket['dthrreenvioticket'])
                 ) {
                     if ($dtultimaInteracaoCliente < $DataUltimaInteracaoConclTelefone) {
                         $mensagemConclusao = $this->criaMensagem($nomecliente, $parametros->getMensagemConclusao(), 'Time Suporte');
