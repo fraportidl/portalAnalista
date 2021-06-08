@@ -37,4 +37,12 @@ class  Datas
         $Data = $dateTime->convertToPHPValue(Date('Y-m-d H:i:s',$dataInt),$platform);
         return $Data;
     }
+
+    public static function converteDataIntEmDataStringMais1hora(int $dataInt){
+        $dataString = date('Y/m/d H:i:s',$dataInt);
+        $dataMais1Hora = date('Y/m/d H:i:s', strtotime($dataString.'+1 hours'));
+        //$Data = Date('Y/m/d H:i:s',$dataInt);
+        //$DataString = date_format($Data, 'Y/m/d H:i:s');
+        return $dataMais1Hora;
+    }
 }
