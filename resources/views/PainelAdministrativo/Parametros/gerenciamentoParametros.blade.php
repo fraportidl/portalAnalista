@@ -377,7 +377,7 @@
         plugins: 'link',
         menubar:false,
         toolbar: ' formatselect | ' +
-            'bold italic underline | fontsizeselect forecolor | bullist numlist outdent indent |' + 'link |' +
+            'bold italic underline | fontsizeselect forecolor |' + 'link |' +
             'removeformat | help',
         toolbar_mode: 'floating',
         element_format: 'html',
