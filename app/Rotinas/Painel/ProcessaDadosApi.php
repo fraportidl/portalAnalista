@@ -3,15 +3,15 @@ namespace App\Rotinas\Painel;
 
 use App\Http\Soap\Cliente1;
 use App\Http\Soap\Cliente2;
+use App\Models\Persistencia\insertUpdateTicket;
 use Doctrine\ORM\EntityManager;
 use App\Models\Entity\tbTickets;
 use App\Models\Entity\tbParametros;
 use Doctrine\DBAL\Types\DateTimeType;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Models\Persistencia\persistTicket;
 use App\Models\Persistencia\persistParametros;
 use App\Models\Persistencia\persistTicketItem;
 use Doctrine\DBAL\Platforms\SQLServer2012Platform;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ProcessaDadosApi
 {
@@ -45,13 +45,14 @@ class ProcessaDadosApi
 
        // $atualizaTicket = $this->ClienteApi->ApiBuscaTicketAlterados($dthrsincronizacaoSoap);
        // $atualizaTicket = $this->ClienteApi->ApiNovosTicket('2021/01/21 00:00:00');
-       $atualizaTicket = $this->ClienteApi->ticket('99671');
+       $atualizaTicket = $this->ClienteApi->ticket('99670');
+
         if ($atualizaTicket->statusRetorno == "ok") {
 
             foreach ($atualizaTicket->dados as $dado) {
 
                 $dtalteracaoTicket = $this->data->convertToPHPValue(Date('Y-m-d H:i:s', (int) $dado->dtalteracao), $this->platform);
-                $persistTicket = new persistTicket($this->em,
+                $persistTicket = new insertUpdateTicket ($this->em,
                     $dado->codticket,
                     $dado->coddepartamento,
                     $dado->codcategoria,
